@@ -1,0 +1,7 @@
+#!/bin/bash
+
+read input
+
+as $input.s -o $input.o
+
+ld $input.o -o $input

@@ -2,7 +2,7 @@
 .global _start
 
 _start:
-	ldr x3, =0x00656d2064656566
+	ldr x3, =0x002e656d2064656566
 	ldr x4, =fillblock
 	ldr x5, =lowercase
 	str x3, [x5]

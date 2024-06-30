@@ -1,3 +1,29 @@
+.equ dfd, -100
+
+.macro openat filename, flags, permissions
+	ldr x0, =dfd
+	ldr x1, =\filename
+	mov x2, #\flags
+	mov x3, #\permissions
+	mov x8, #0x38
+	svc 0
+.endm
+
+.macro fchmod fd, permissions
+	mov x0, \fd
+	ldr x1, =\permissions
+	mov x8, #0x34
+	svc 0
+.endm
+
+.macro read fd, fillblock, length
+	mov x0, \fd
+	ldr x1, =\fillblock
+	ldr x2, =\length
+	mov x8, #0x3f
+	svc 0
+.endm
+
 .macro write fd, string, length
 	mov x0, \fd
 	ldr x1, =\string

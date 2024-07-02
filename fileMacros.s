@@ -1,10 +1,12 @@
 .equ dfd, -100
+.equ stdin 0
+.equ stdout, 1
 
 .macro openat filename, flags, permissions
 	ldr x0, =dfd
 	ldr x1, =\filename
 	mov x2, #\flags
-	mov x3, #\permissions
+	mov x3, #permissions
 	mov x8, #0x38
 	svc 0
 .endm

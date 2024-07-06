@@ -1,4 +1,4 @@
-.macro printReg reg
+.macro printregister register
 	/* Essentially all of the stp instructions are a more efficient way of
 	   doing push {x0-x18, lr}, and all of the ldp instructions are a more
 	   efficient way of doing pop {x0-x18, lr} */
@@ -16,9 +16,9 @@
 	stp x14, x15, [sp, #-16]!
 	stp x16, x17, [sp, #-16]!
 	stp x18, lr, [sp, #-16]!
-	mov x2, X\reg
-	mov x3, X\reg
-	mov x1, #\reg
+	mov x2, X\register
+	mov x3, X\register
+	mov x1, #\register
 	add x1, x1, #'0'
 	ldr x0, =printFormatString
 	bl printf

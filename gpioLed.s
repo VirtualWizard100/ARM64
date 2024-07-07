@@ -6,6 +6,7 @@
 _start:
 .align 4
 	mmapdevmem
+	adds x9, xzr, x0
 	nanosleep
 	gpiodirectionout pin17
 loop:

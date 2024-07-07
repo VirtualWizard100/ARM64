@@ -1,12 +1,13 @@
 .equ dfd, -100
-.equ stdin 0
-.equ stdout, 1
+.equ stdin, 0
+.equ readwrite, 0666
+.equ execute, 0100
 
 .macro openat filename, flags, permissions
 	ldr x0, =dfd
 	ldr x1, =\filename
 	mov x2, #\flags
-	mov x3, #permissions
+	ldr x3, =stdin
 	mov x8, #0x38
 	svc 0
 .endm
@@ -29,7 +30,7 @@
 .macro write fd, string, length
 	mov x0, \fd
 	ldr x1, =\string
-	mov x2, \length
+	mov x2, #\length
 	mov x8, #0x40
 	svc 0
 .endm

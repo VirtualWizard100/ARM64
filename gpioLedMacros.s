@@ -4,7 +4,7 @@
 .equ prot_read, 1
 .equ prot_write, 2
 .equ map_shared, 1
-.equ execute, 0200
+/*.equ execute, 0200*/
 .equ pageLength, 4096
 .equ setregoffset, 28
 .equ clrregoffset, 40
@@ -13,8 +13,9 @@
    directory, with a varible page size/length for the page created, then returns
    a virtual address for the virtual page created */
 .macro mmapdevmem
-	openat devmem, readwrite+execute
+	openat devmem, execute+readwrite, stdin
 	adds x4, xzr, x0 /* mov devmem file descriptor into x4 */
+	/* Error handling code */
 	bpl 1f
 	mov x1, #1
 	ldr x2, =devmemerrmessage
@@ -28,7 +29,7 @@
 	ldr x5, =baseGpioAddress/* Load the base gpio address into x5 */
 	ldr x5, [x5]		/* Load the value from the base gpio address */
 	mov x0, #0		/* move 0 into x0 for stdin */
-	mov x1, #pageLength	/* move 4096 which is the oage length into x1 */
+	mov x1, #pageLength	/* move 4096 which is the page length into x1 */
 	mov x2, #(prot_read + prot_write) /* move protect read, and protect write permissions into x2 */
 	mov x3, #map_shared	/* move the map shared value into x3, which is 1 */
 	mov x8, #0xde		/* load the value for the mmap syscall into x8 */
@@ -106,10 +107,10 @@ timeremaining:
 	.dword 10000000
 gpioBaseAddress:
 	.align 4
-	.dword 7e200000
+	.dword fe200000
 errmessage:
-	.asciz "couldn't obtain file descriptor for /dev/mem\n"
+	.asciz "Couldn't obtain file descriptor for /dev/mem\n"
 len = .-errmessage
 devmemerrmessage:
-	.asciz "Couldn't ontain devmem file descriptor\n"
+	.asciz "Couldn't obtain devmem file descriptor\n"
 len2 = .-devmemerrmessage

@@ -37,9 +37,7 @@
 	adds x9, xzr, x0	/* Obtain file descriptor returned from mmap */
 	bpl 2f
 	mov x1, #1
-	ldr x2, =len
-	ldr w2, [x2]
-	write x1, errmessage, x2
+	write x1, errmessage, len
 2:
 	/* x0 = 0
 	   x1 = 4096

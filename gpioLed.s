@@ -1,8 +1,10 @@
+.text
 .include "gpioLedMacros.s"
 
 .global _start
 
 _start:
+.align 4
 	mmapdevmem
 	nanosleep
 	gpiodirectionout pin17
@@ -15,7 +17,7 @@ loop:
 .data
 pin17:
 	.word 4 /* pin offset value in select */
-	.align 4
+.align 4
 pin22:
 	.word 8 /* pin offset value in select */
-	.align 4
+.align 4

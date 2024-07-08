@@ -26,7 +26,7 @@
 	mov x8, #0x5d
 	svc 0
 1:
-	ldr x5, =baseGpioAddress/* Load the base gpio address into x5 */
+	ldr x5, =gpioBaseAddress/* Load the base gpio address into x5 */
 	ldr x5, [x5]		/* Load the value from the base gpio address */
 	mov x0, #0		/* move 0 into x0 for stdin */
 	mov x1, #pageLength	/* move 4096 which is the page length into x1 */
@@ -105,7 +105,7 @@ timeremaining:
 	.dword 10000000
 gpioBaseAddress:
 	.align 4
-	.dword fe200000
+	.dword 0xfe200000
 errmessage:
 	.asciz "Couldn't obtain file descriptor for /dev/mem\n"
 len = .-errmessage

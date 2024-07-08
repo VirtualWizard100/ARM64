@@ -1,6 +1,6 @@
 .include "fileMacros.s"
 
-/*.equ baseGpioAddress, 0x7e200000*/
+/*.equ gpioBaseAddress, 0x7e200000*/
 .equ prot_read, 1
 .equ prot_write, 2
 .equ map_shared, 1

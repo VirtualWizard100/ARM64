@@ -2,6 +2,6 @@
 
 read input
 
-as -a -am $input.s -o $input.o
+as -a -am  $input.S -o $input.o
 
 ld $input.o -o $input

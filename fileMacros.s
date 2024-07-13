@@ -1,4 +1,4 @@
-.equ dfd, -100
+.equ dfd, -100 //<--- Where the error is for gpioLed
 .equ stdin, 0
 .equ readwrite, 0666
 .equ execute, 0100

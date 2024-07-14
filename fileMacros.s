@@ -1,10 +1,10 @@
-.equ dfd, -100 //<--- Where the error is for gpioLed
+.equ dfd, -100
 .equ stdin, 0
 .equ readwrite, 0666
 .equ execute, 0100
 
 .macro openat filename, flags, permissions
-	ldr x0, =dfd
+	ldr x0, =dfd //<--- Where the error is for gpioLed
 	ldr x1, =\filename
 	mov x2, #\flags
 	ldr x3, =stdin
